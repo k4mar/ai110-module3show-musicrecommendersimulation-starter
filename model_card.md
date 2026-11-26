@@ -182,7 +182,7 @@ Prefs:   {'genre': 'k-pop', 'mood': 'happy', 'energy': 0.7, 'likes_acoustic': Fa
 
 **Why "Gym Hero" keeps showing up for Happy Pop fans, in plain language:** the system gives a big bonus just for having the same genre label as your favorite. Gym Hero is labeled "pop", so it collects that bonus even though it's an intense workout song, not a happy one. The system can't tell that two "pop" songs can feel completely different.
 
-**What surprised me:** <!-- TODO (Kamar): in your own words — e.g. how much the conflicted profile ignored energy, or that k-pop got zero genre credit -->
+**What surprised me:** The "conflicted" profile surprised me most. I asked for 0.9 energy, and the #1 song was a 0.30-energy folk ballad. Two label matches were enough to drown out the one number that described how the music should feel. I also didn't expect "indie pop" to get zero genre credit from a pop fan.
 
 **Experiment (weight shift):** I halved the genre weight (2.0 → 1.0) and doubled the energy weight (1.0 → 2.0). For High-Energy Pop, *Rooftop Lights* passed *Gym Hero* for #2, which is a more accurate result. For Chill Lofi and Rock, the #1 pick stayed the same, but non-matching genres with the right energy got closer to the top. Full output is in the README.
 
@@ -200,8 +200,10 @@ Prefs:   {'genre': 'k-pop', 'mood': 'happy', 'energy': 0.7, 'likes_acoustic': Fa
 
 ## 9. Personal Reflection
 
-<!-- TODO (Kamar): answer these in your own words — this part is graded on specific, honest detail.
-- What was your biggest learning moment during this project?
-- How did using AI tools help you, and when did you need to double-check them?
-- What surprised you about how simple algorithms can still "feel" like recommendations?
-- What would you try next if you extended this project? -->
+**Biggest learning moment:** I learned that a recommender is really two separate pieces. One is a rule that judges a single song, and the other is a sort over the whole catalog. Once I saw that, "recommendation" stopped feeling like magic. Picking the weights is where all the real decisions, and all the bias, live.
+
+**How AI helped, and when I double-checked it:** I used Claude heavily on this project. It wrote the loading, scoring and ranking code, expanded the dataset, and drafted the docs. I still had to check that the output made sense. I ran the profiles and confirmed that the energy rule rewards closeness rather than "more energy," and that the results matched what I'd expect to hear. The AI also caught that the starter `main.py` import breaks when you run it with `python -m src.main`. That's a good reminder that starter code and AI code both need to actually be run, not just read.
+
+**What surprised me about simple algorithms:** With only four checks and some addition, the top results for lofi and rock genuinely felt right. It's also easy to see how the same simple rules create filter bubbles: the system keeps handing you whatever shares your label, even when the song's actual vibe is wrong.
+
+**What I'd try next:** I'd give partial credit for related genres, use valence and tempo so that "happy" is based on how a song sounds, and add a diversity rule so one artist or genre can't fill the whole top 5.

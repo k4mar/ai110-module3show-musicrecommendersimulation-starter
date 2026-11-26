@@ -134,6 +134,6 @@ More detail in the model card.
 
 [**Model Card**](model_card.md)
 
-<!-- TODO (Kamar): write 1–2 paragraphs in your own words about:
-     - how recommenders turn data into predictions
-     - where bias or unfairness could show up in systems like this -->
+This project showed me that a recommender turns data into a prediction through choices people make. Someone decides which features count, how much each one is worth, and how to break ties. The code itself is tiny: score each song, sort, take the top 5. But every weight is an opinion about what "good taste" means. When genre was worth 2 points, a workout track beat a genuinely happy song for a happy-pop listener, just because of a label. Halving that weight made the results feel more accurate.
+
+Bias shows up in two places: the data and the rules. The catalog has three lofi songs and only one song for most other genres, so some listeners get much better lists than others. Exact text matching means anyone whose genre isn't spelled the same way, or isn't in the catalog at all (like k-pop), gets left out. Real platforms with millions of users can turn small choices like these into large filter bubbles. That's why documenting limitations in something like a model card matters.
