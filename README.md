@@ -21,7 +21,7 @@ VibeFinder is a small content-based music recommender written in Python. It read
 |---|---|
 | Genre matches exactly | +2.0 |
 | Mood matches exactly | +1.0 |
-| Energy closeness | `1.0 − |song energy − target energy|` (0 to +1.0) |
+| Energy closeness | `1.0 − abs(song energy − target energy)`, from 0 to +1.0 |
 | Acoustic taste lines up (song acousticness ≥ 0.6 and the user likes acoustic, or < 0.6 and they don't) | +0.5 |
 
 Max score is 4.5. The energy rule rewards being *close* to the target, not just having more or less energy. A 0.8-energy fan gets the most points for a 0.8 song and fewer for both 0.3 and 1.0 songs.
